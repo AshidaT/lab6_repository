@@ -7,7 +7,15 @@ def encode(password):
     return encoded_password
 
 
-
+def decode(encoded_password):
+    decoded_password = ""
+    for char in encoded_password:
+        if (int(char) - 3) <= -1:
+            decoded_password += str((int(char) -3)+10)
+        else:
+            decoded_password += str(int(char) - 3)
+    return decoded_password
+# Decodes by subtracting 3 from each digit, if result is negative, 10 is added. Result then added to decoded_password.
 
 
 def main():
@@ -22,16 +30,16 @@ def main():
             password = input("Please enter your password to encode: ")
             encoded = encode(password)
             print("Your password has been encoded and stored!")
+
         elif choice == '2':
-            if 'encoded' in locals():
-                print(f"The encoded password is {encoded}, and the original password is {decode(encoded)}.")
-            else:
-                print("Please encode a password first.")
+            print(f"The encoded password is {encoded}, and the original password is {decode(encoded)}.")
+
         elif choice == '3':
-            print("Goodbye!")
             break
+
         else:
             print("Invalid choice. Please enter a valid option.")
+
 
 if __name__ == "__main__":
     main()
